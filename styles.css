@@ -1,171 +1,142 @@
-/* styles.css */
-#display {
-    font-family: 'PixelFont', monospace;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    let isShift = false;
+    const display = document.getElementById('display');
+    const buttons = document.querySelectorAll('button');
+    const scientificButtons = document.querySelectorAll('.scientific');
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
-    position: relative;
-    z-index: 0;
-}
+    // 儲存原始的文字標籤，方便切換時回復
+    scientificButtons.forEach(button => {
+        button.dataset.original = button.textContent;
+    });
 
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('BGkafka.jpeg') no-repeat center center fixed;
-    background-size: cover;
-    filter: brightness(40%);
-    z-index: -1;
-}
+    // 按鈕事件監聽
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const value = button.dataset.value;
+            const action = button.dataset.action;
 
-.calculator {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-    width: 400px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 40px; /* 與 footer 保持間距 */
-}
+            if (action) {
+                handleAction(action);
+            } else if (value) {
+                handleValue(value);
+            }
+        });
+    });
 
-#title {
-    color: rgb(255, 152, 255);
-    text-align: center;
-    font-size: 2em;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    letter-spacing: 2px;
-}
-
-#display {
-    width: 100%;
-    height: 80px;
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    border-radius: 15px;
-    font-size: 2.5em;
-    text-align: right;
-    padding: 10px 20px;
-    box-sizing: border-box;
-    color: #6a11cb;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Courier New', monospace;
-}
-
-/* 科學功能區：2 排，每排 5 個按鈕 */
-.scientific-buttons {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
-    margin-bottom: 20px;
-}
-
-.scientific-buttons button {
-    padding: 8px;
-    font-size: 1em;
-    border: none;
-    border-radius: 8px;
-    background: rgba(106, 17, 203, 0.8);
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    height: 50px;
-}
-
-.scientific-buttons button:hover {
-    background: rgba(106, 17, 203, 1);
-}
-
-/* 主計算區：5 排，每排 4 個按鈕 */
-.main-pad {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-}
-
-.main-pad button {
-    padding: 10px;
-    font-size: 1.5em;
-    border: none;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.9);
-    color: #6a11cb;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    height: 60px;
-}
-
-.main-pad button.operator {
-    background: rgba(255, 105, 245, 0.8);
-    color: white;
-}
-
-.main-pad button.shift {
-    background: #ff69f5;
-}
-
-/* 懸停與點擊效果 */
-.main-pad button:hover {
-    background: #ff69f5;
-    color: white;
-    transform: translateY(-2px);
-}
-
-.main-pad button:active {
-    transform: translateY(0);
-}
-
-/* 禁用文本選擇 */
-button {
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-/* 鍵盤聚焦狀態 */
-button:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
-    outline-offset: 2px;
-}
-
-/* 響應式設計 */
-@media (max-width: 480px) {
-    .calculator {
-        width: 100%;
-        padding: 15px;
+    // 處理數值輸入
+    function handleValue(value) {
+        if (isShift) {
+            value = applyShift(value);
+            toggleShift(); // 自動關閉 shift
+        }
+        display.value += value;
     }
-    
-    #display {
-        height: 60px;
-        font-size: 2em;
-    }
-    
-    .scientific-buttons button,
-    .main-pad button {
-        height: 45px;
-        font-size: 1.2em;
-    }
-}
 
-/* 全局 footer 設定：固定於頁面底部，透明背景，小小的白色字 */
-.global-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 0.8em;
-    color: #fff;
-    padding: 10px 0;
-}
+    // 處理特殊操作
+    function handleAction(action) {
+        switch(action) {
+            case 'clear':
+                clearDisplay();
+                break;
+            case 'backspace':
+                backspace();
+                break;
+            case 'calculate':
+                calculate();
+                break;
+            case 'shift':
+                toggleShift();
+                break;
+        }
+    }
+
+    // 切換 Shift 狀態，並更新科學按鈕文字
+    function toggleShift() {
+        isShift = !isShift;
+        document.querySelector('.shift').style.background = isShift ? '#6a11cb' : '#ff69f5';
+        
+        // 定義對應的轉換規則（僅對按鈕上顯示的文字，不含括號）
+        const mapping = {
+            'sin': 'asin',
+            'cos': 'acos',
+            'tan': 'atan',
+            'log': 'log10',
+            'ln': 'exp',
+            '√': '^3√',
+            'x^y': 'x^2',
+            'π': '2π',
+            'e': '1/e',
+            '!': 'nPr'
+        };
+
+        scientificButtons.forEach(button => {
+            const orig = button.dataset.original;
+            button.textContent = isShift ? (mapping[orig] || orig) : orig;
+        });
+    }
+
+    // Shift 狀態下對輸入值的轉換
+    function applyShift(value) {
+        const shiftMap = {
+            'sin(': 'asin(',
+            'cos(': 'acos(',
+            'tan(': 'atan(',
+            'log(': 'log10(',
+            'ln(': 'exp(',
+            '√(': '^3√(',
+            '^': 'x^2',
+            'π': '2π',
+            'e': '1/e',
+            '!': 'nPr'
+        };
+        return shiftMap[value] || value;
+    }
+
+    // 清除顯示
+    function clearDisplay() {
+        display.value = '';
+    }
+
+    // 刪除字元
+    function backspace() {
+        display.value = display.value.slice(0, -1);
+    }
+
+    // 階乘計算
+    function factorial(n) {
+        return n <= 1 ? 1 : n * factorial(n - 1);
+    }
+
+    // 計算結果
+    function calculate() {
+        try {
+            let expr = display.value
+                .replace(/π/g, Math.PI)
+                .replace(/e/g, Math.E)
+                .replace(/√\((.+?)\)/g, 'Math.sqrt($1)')
+                .replace(/\^3√\((.+?)\)/g, 'Math.cbrt($1)')
+                .replace(/\^/g, '**')
+                .replace(/sin\(/g, 'Math.sin(')
+                .replace(/cos\(/g, 'Math.cos(')
+                .replace(/tan\(/g, 'Math.tan(')
+                .replace(/asin\(/g, 'Math.asin(')
+                .replace(/acos\(/g, 'Math.acos(')
+                .replace(/atan\(/g, 'Math.atan(')
+                .replace(/log\(/g, 'Math.log(')
+                .replace(/log10\(/g, 'Math.log10(')
+                .replace(/ln\(/g, 'Math.log(')
+                .replace(/exp\(/g, 'Math.exp(')
+                .replace(/(\d+)!/g, (_, n) => factorial(parseInt(n)));
+
+            display.value = eval(expr);
+        } catch (error) {
+            display.value = 'Error';
+        }
+    }
+
+    // 鍵盤支持
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') calculate();
+        if (e.key === 'Backspace') backspace();
+    });
+});
