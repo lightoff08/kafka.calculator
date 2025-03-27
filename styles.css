@@ -1,6 +1,3 @@
-/* 你原本的 CSS 開始 */
-/*------------------------------------------------*/
-/* 這裡是你的原始 CSS 內容 */
 #display {
     font-family: 'PixelFont', monospace;
 }
@@ -25,11 +22,10 @@ body::before {
     right: 0;
     bottom: 0;
     background: url('BGkafka.jpeg') no-repeat center center fixed;
-    background-size: cover; /* 保證背景圖片覆蓋整個視窗 */
+    background-size: cover;
     filter: brightness(40%);
     z-index: -1;
 }
-
 
 .calculator {
     background: rgba(255, 255, 255, 0.1);
@@ -39,7 +35,7 @@ body::before {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     width: 400px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    margin-bottom: 40px; /* 與 footer 保持間距 */
+    margin-bottom: 40px;
 }
 
 #title {
@@ -67,7 +63,6 @@ body::before {
     font-family: 'Courier New', monospace;
 }
 
-/* 科學功能區：2 排，每排 5 個按鈕 */
 .scientific-buttons {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -91,7 +86,6 @@ body::before {
     background: rgba(106, 17, 203, 1);
 }
 
-/* 主計算區：5 排，每排 4 個按鈕 */
 .main-pad {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -119,7 +113,6 @@ body::before {
     background: #ff69f5;
 }
 
-/* 懸停與點擊效果 */
 .main-pad button:hover {
     background: #ff69f5;
     color: white;
@@ -130,19 +123,16 @@ body::before {
     transform: translateY(0);
 }
 
-/* 禁用文本選擇 */
 button {
     user-select: none;
     -webkit-user-select: none;
 }
 
-/* 鍵盤聚焦狀態 */
 button:focus {
     outline: 2px solid rgba(255, 255, 255, 0.5);
     outline-offset: 2px;
 }
 
-/* 全局 footer 設定：固定於頁面底部，透明背景，小小的白色字 */
 .global-footer {
     position: fixed;
     bottom: 0;
@@ -154,8 +144,6 @@ button:focus {
     padding: 10px 0;
 }
 
-/*------------------------------------------------*/
-/* 以下為新增的 RWD 模組，不改動原有程式碼，只增加響應式功能 */
 @media (max-width: 480px) {
     .calculator {
         width: 100%;
