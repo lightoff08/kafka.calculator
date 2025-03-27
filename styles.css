@@ -1,4 +1,4 @@
-/* 全局樣式 */
+/* Global styles */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
@@ -60,7 +60,7 @@ body::before {
     font-family: 'Courier New', monospace;
 }
 
-/* 科學功能區（縮小按鈕尺寸並調整佈局） */
+/* Scientific (function) buttons */
 .scientific-buttons {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -84,7 +84,7 @@ body::before {
     background: rgba(106, 17, 203, 1);
 }
 
-/* 主計算區（調整為 5 排，每排 4 個按鈕） */
+/* Main keypad area remains unchanged */
 .main-pad {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -112,12 +112,6 @@ body::before {
     background: #ff69f5;
 }
 
-/* 移動括號按鈕至科學功能區 */
-.parentheses-button {
-    grid-column: span 1;
-}
-
-/* 懸停與點擊效果 */
 .main-pad button:hover {
     background: #ff69f5;
     color: white;
@@ -128,19 +122,18 @@ body::before {
     transform: translateY(0);
 }
 
-/* 禁用文本選擇 */
+/* Disable text selection */
 button {
     user-select: none;
     -webkit-user-select: none;
 }
 
-/* 按鈕聚焦狀態 */
 button:focus {
     outline: 2px solid rgba(255, 255, 255, 0.5);
     outline-offset: 2px;
 }
 
-/* 全局 footer 設定 */
+/* Global footer */
 .global-footer {
     position: fixed;
     bottom: 0;
@@ -152,7 +145,7 @@ button:focus {
     padding: 10px 0;
 }
 
-/* 響應式設計 */
+/* Responsive design */
 @media (max-width: 480px) {
     .calculator {
         width: 100%;
