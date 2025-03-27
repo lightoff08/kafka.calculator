@@ -1,0 +1,171 @@
+/* styles.css */
+#display {
+    font-family: 'PixelFont', monospace;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    z-index: 0;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('BGkafka.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    filter: brightness(40%);
+    z-index: -1;
+}
+
+.calculator {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 40px; /* 與 footer 保持間距 */
+}
+
+#title {
+    color: rgb(255, 152, 255);
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+}
+
+#display {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 15px;
+    font-size: 2.5em;
+    text-align: right;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    color: #6a11cb;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Courier New', monospace;
+}
+
+/* 科學功能區：2 排，每排 5 個按鈕 */
+.scientific-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.scientific-buttons button {
+    padding: 8px;
+    font-size: 1em;
+    border: none;
+    border-radius: 8px;
+    background: rgba(106, 17, 203, 0.8);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 50px;
+}
+
+.scientific-buttons button:hover {
+    background: rgba(106, 17, 203, 1);
+}
+
+/* 主計算區：5 排，每排 4 個按鈕 */
+.main-pad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.main-pad button {
+    padding: 10px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #6a11cb;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 60px;
+}
+
+.main-pad button.operator {
+    background: rgba(255, 105, 245, 0.8);
+    color: white;
+}
+
+.main-pad button.shift {
+    background: #ff69f5;
+}
+
+/* 懸停與點擊效果 */
+.main-pad button:hover {
+    background: #ff69f5;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.main-pad button:active {
+    transform: translateY(0);
+}
+
+/* 禁用文本選擇 */
+button {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* 鍵盤聚焦狀態 */
+button:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* 響應式設計 */
+@media (max-width: 480px) {
+    .calculator {
+        width: 100%;
+        padding: 15px;
+    }
+    
+    #display {
+        height: 60px;
+        font-size: 2em;
+    }
+    
+    .scientific-buttons button,
+    .main-pad button {
+        height: 45px;
+        font-size: 1.2em;
+    }
+}
+
+/* 全局 footer 設定：固定於頁面底部，透明背景，小小的白色字 */
+.global-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 0.8em;
+    color: #fff;
+    padding: 10px 0;
+}
