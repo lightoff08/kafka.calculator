@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="zh-tw">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- 新增 meta viewport，讓手機能自動調整尺寸 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kafka's Calculator</title>
     <link rel="icon" href="kafkaicon.ico" type="image/x-icon">
@@ -17,52 +16,44 @@
     <div class="calculator">
         <h1 id="title">Kafka's Calculator</h1>
         <input type="text" id="display" readonly>
-        <!-- 科學功能區 -->
         <div class="scientific-buttons">
-            <!-- 第一排科學函數 -->
             <button class="scientific" data-value="sin(">sin</button>
             <button class="scientific" data-value="cos(">cos</button>
             <button class="scientific" data-value="tan(">tan</button>
             <button class="scientific" data-value="log(">log</button>
             <button class="scientific" data-value="ln(">ln</button>
-            <!-- 第二排科學函數 -->
             <button class="scientific" data-value="√(">√</button>
             <button class="scientific" data-value="^">x^y</button>
             <button class="scientific" data-value="π">π</button>
             <button class="scientific" data-value="e">e</button>
             <button class="scientific" data-value="!">!</button>
         </div>
-        <!-- 主計算區 -->
         <div class="main-pad">
-            <!-- 第一排：操作 -->
             <button data-action="clear">C</button>
             <button data-action="backspace">⌫</button>
             <button class="operator" data-value="%">%</button>
             <button class="operator" data-value="/">/</button>
-            <!-- 第二排：數字與乘法 -->
             <button data-value="7">7</button>
             <button data-value="8">8</button>
             <button data-value="9">9</button>
             <button class="operator" data-value="*">×</button>
-            <!-- 第三排：數字與減法 -->
             <button data-value="4">4</button>
             <button data-value="5">5</button>
             <button data-value="6">6</button>
             <button class="operator" data-value="-">-</button>
-            <!-- 第四排：數字與加法 -->
             <button data-value="1">1</button>
             <button data-value="2">2</button>
             <button data-value="3">3</button>
             <button class="operator" data-value="+">+</button>
-            <!-- 第五排：0、.、SHIFT 與 = -->
             <button data-value="0">0</button>
             <button data-value=".">.</button>
             <button class="shift" data-action="shift">SHIFT</button>
             <button class="operator" data-action="calculate">=</button>
+            <button data-value="("> ( </button>
+            <button data-value=")"> ) </button>
         </div>
         <script src="app.js"></script>
     </div>
-    <!-- 全局 footer：固定在頁面底部，透明背景，小小的白色字 -->
     <footer class="global-footer">
         © by LightOFF 2025
     </footer>
