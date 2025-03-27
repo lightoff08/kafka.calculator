@@ -49,21 +49,21 @@ body::before {
     width: 100%;
     height: 80px;
     margin-bottom: 15px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(156, 156, 156, 0.4); /* 淡灰色背景 (90% 不透明度) */
     border: none;
     border-radius: 15px;
     font-size: 3.2em;
     text-align: right;
     padding: 10px 20px;
     box-sizing: border-box;
-    color: #00ff88;
+    color: rgb(233, 109, 233); /* 霓虹粉紫色 */
     font-family: 'Digital-7', 'Courier New', monospace;
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    text-shadow: 0 0 10px rgba(255, 152, 255, 0.3); /* 同步調整光暈顏色 */
     letter-spacing: 2px;
     font-variant-numeric: tabular-nums;
     -webkit-font-smoothing: none;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.1); /* 添加內陰影提升層次 */
 }
-
 .scientific-buttons {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -150,11 +150,11 @@ button:focus {
 }
 
 @media (max-width: 480px) {
-    body {
-        padding: 10px;
-        align-items: flex-start;
+    #display {
+        background: rgba(156, 156, 156, 0.4); /* 手機版稍深一點 */
+        font-size: 2.5em;
     }
-    
+
     .calculator {
         width: 100%;
         padding: 15px;
