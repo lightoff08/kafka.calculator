@@ -25,10 +25,11 @@ body::before {
     right: 0;
     bottom: 0;
     background: url('BGkafka.jpeg') no-repeat center center fixed;
-    background-size: cover;
+    background-size: cover; /* 保證背景圖片覆蓋整個視窗 */
     filter: brightness(40%);
     z-index: -1;
 }
+
 
 .calculator {
     background: rgba(255, 255, 255, 0.1);
