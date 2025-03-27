@@ -31,9 +31,9 @@ body::before {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     border-radius: 20px;
-    padding: 20px;
+    padding: 25px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
-    width: 320px;
+    width: 400px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     margin-bottom: 40px;
 }
@@ -42,68 +42,66 @@ body::before {
     color: rgb(255, 152, 255);
     text-align: center;
     font-size: 2em;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
 }
 
 #display {
     width: 100%;
-    height: 60px;
-    margin-bottom: 15px;
+    height: 80px;
+    margin-bottom: 20px;
     background: rgba(255, 255, 255, 0.9);
     border: none;
-    border-radius: 10px;
-    font-size: 1.8em;
+    border-radius: 15px;
+    font-size: 2.5em;
     text-align: right;
-    padding: 5px 10px;
+    padding: 10px 20px;
     box-sizing: border-box;
     color: #6a11cb;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: 'Courier New', monospace;
 }
 
-/* 科學功能區：2 排，每排 5 個按鈕 */
 .scientific-buttons {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
-    margin-bottom: 15px;
+    gap: 8px;
+    margin-bottom: 20px;
 }
 
 .scientific-buttons button {
-    padding: 6px;
-    font-size: 0.9em;
+    padding: 8px;
+    font-size: 1em;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background: rgba(106, 17, 203, 0.8);
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
-    height: 40px;
+    height: 50px;
 }
 
 .scientific-buttons button:hover {
     background: rgba(106, 17, 203, 1);
 }
 
-/* 主計算區：調整為 5 排，每排 4 個按鈕 */
 .main-pad {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    gap: 8px;
 }
 
 .main-pad button {
-    padding: 8px;
-    font-size: 1.3em;
+    padding: 10px;
+    font-size: 1.5em;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background: rgba(255, 255, 255, 0.9);
     color: #6a11cb;
     cursor: pointer;
     transition: all 0.3s ease;
-    height: 50px;
+    height: 60px;
 }
 
 .main-pad button.operator {
@@ -118,7 +116,7 @@ body::before {
 .main-pad button:hover {
     background: #ff69f5;
     color: white;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
 .main-pad button:active {
@@ -148,18 +146,18 @@ button:focus {
 
 @media (max-width: 480px) {
     .calculator {
-        width: 95%;
+        width: 100%;
         padding: 15px;
     }
     
     #display {
-        height: 50px;
-        font-size: 1.6em;
+        height: 60px;
+        font-size: 2em;
     }
     
     .scientific-buttons button,
     .main-pad button {
-        height: 38px;
-        font-size: 1em;
+        height: 45px;
+        font-size: 1.2em;
     }
 }
